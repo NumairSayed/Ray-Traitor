@@ -7,7 +7,7 @@ qbRT::Scene::Scene(){
     m_camera.SetLookAt	( qbVector<double>{std::vector<double> {0.0, 0.0, 0.0}} );
 	m_camera.SetUp			( qbVector<double>{std::vector<double> {0.0, 0.0, 1.0}} );
 	m_camera.SetHorzSize(0.25);
-	m_camera.SetAspect(1920/1080);
+	m_camera.SetAspect(1920.0/1080.0);
 	m_camera.UpdateCameraGeometry();
 }
 
@@ -45,8 +45,15 @@ bool qbRT::Scene::Render(qbImage &outputImage){
 			// If we have a valid intersection, change pixel color to red.
 			if (validInt)
 			{
+				// Compute the distance between the camera and the point of intersection.
+				double dist = (intPoint - cameraRay.m_point1).norm();
+				if (dist > maxDist)
+					maxDist = dist;
 				
-				outputImage.SetPixel(x, y, 0.0,255.0, 0.0);
+				if (dist < minDist)
+					minDist = dist;
+				
+				outputImage.SetPixel(x, y, 255.0 - ((dist - 9.0) / 0.94605) * 255.0, 0.0, 0.0);
 			}
 			else
 			{

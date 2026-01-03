@@ -15,7 +15,7 @@ bool CApp::OnInit(){
     if (SDL_Init(SDL_INIT_EVERYTHING)<0){
         return false;
     }
-    pWindow = SDL_CreateWindow("qbraytracer window --Woww ", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1920, 1080, SDL_WINDOW_SHOWN);
+    pWindow = SDL_CreateWindow("SHawtyy Like a Melodyy !!", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1920, 1080, SDL_WINDOW_SHOWN);
     if (pWindow != NULL){
         pRenderer = SDL_CreateRenderer(pWindow, -1, 0);
 
